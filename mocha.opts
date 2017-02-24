@@ -1,0 +1,5 @@
+--reporter spec
+--recursive
+--slow 2000
+--timeout 30000
+--compilers js:babel-core/register

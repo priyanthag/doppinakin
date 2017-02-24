@@ -146,7 +146,7 @@ class Doppinakin {
       if (get(modelObj.result, 'ok') === 1) {
         return obj;
       } else {
-        throw new Error (`Error in creating record ${JSON.stringify(obj)}`);
+        throw new Error (`Error in updating record ${JSON.stringify(obj)}`);
       }
     } catch (e) {
       throw new Error(e)

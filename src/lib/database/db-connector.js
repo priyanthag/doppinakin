@@ -27,7 +27,7 @@ class DBConnector {
 
   constructor(config, connectionName) {
     if (isUndefined(connectionName)) {
-      throw new Error('Connection name must be provided')
+      throw new Error('Connection name must be provided to initiate')
     }
     if (isUndefined(config)) {
       throw new Error('Config must be provided')

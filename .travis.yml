@@ -3,6 +3,6 @@ sudo: false
 node_js:
   - "5.2.0"
 install:
-  - yarn
+  - npm install -g yarn mocha
 script:
   - npm test

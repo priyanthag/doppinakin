@@ -10,13 +10,13 @@ import modelConfig from './fixtures/model-config.fixture';
 describe('Doppinakin', () => {
 
   before(() => {
-    Doppinakin.setDatabaseConfig(dbConfig)
-    Doppinakin.setModelConfig(modelConfig)
+    //Doppinakin.setDatabaseConfig(dbConfig)
+    //Doppinakin.setModelConfig(modelConfig)
   })
 
   it('Should model create a link to database', () => {
 
-    let tempModel = new Doppinakin();
+    //let tempModel = new Doppinakin();
     // @TODO - more test case should be written
 
   })

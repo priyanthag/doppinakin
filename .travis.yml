@@ -3,7 +3,7 @@ sudo: false
 node_js:
   - "5.2.0"
 install:
-  - npm install -g yarn mocha
+  - npm install -g yarn mocha codecov
   - yarn
 script:
   - npm test

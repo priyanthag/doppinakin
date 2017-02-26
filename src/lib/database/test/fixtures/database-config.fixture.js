@@ -1,19 +1,19 @@
 export default {
   connections: {
     apiCon: {
-      host: 'localhost',
-      port: '27017',
-      username: '',
-      password: '',
+      host: process.env.MONGODB_API_HOST || 'localhost',
+      port: process.env.MONGODB_API_PORT || '27017',
+      username: process.env.MONGODB_API_USERNAME || '',
+      password: process.env.MONGODB_API_PASSWORD || '',
       database: 'doppinakin-api-test',
       singleton: true,
       connectionPoolSize: 20,
     },
     logCon: {
-      host: 'localhost',
-      port: '27017',
-      username: '',
-      password: '',
+      host: process.env.MONGODB_LOG_HOST || 'localhost',
+      port: process.env.MONGODB_LOG_PORT || '27017',
+      username: process.env.MONGODB_LOG_USERNAME || '',
+      password: process.env.MONGODB_LOG_PASSWORD || '',
       database: 'doppinakin-log-test',
       singleton: true,
       connectionPoolSize: 20,

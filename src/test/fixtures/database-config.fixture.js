@@ -5,7 +5,7 @@ export default {
       port: '27017',
       username: '',
       password: '',
-      database: 'doppinakin-api',
+      database: 'doppinakin-api-test',
       singleton: true,
       connectionPoolSize: 20,
     },
@@ -14,7 +14,7 @@ export default {
       port: '27017',
       username: '',
       password: '',
-      database: 'doppinakin-log',
+      database: 'doppinakin-log-test',
       singleton: true,
       connectionPoolSize: 20,
     }

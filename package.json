@@ -9,8 +9,10 @@
     "lint": "eslint src",
     "test": "npm run lint && npm run test:unit",
     "test:runner": "NODE_ENV=test mocha --opts ./mocha.opts",
-    "test:unit": "npm run test:runner -- './src/**/test/*.spec.js' './example/**/test/*.spec.js' ",
-    "test:unit:single": "npm run test:runner -- -w"
+    "test:unit": "nyc npm run test:runner -- './src/**/test/*.spec.js' './example/**/test/*.spec.js' ",
+    "test:unit:single": "nyc npm run test:runner -- -w",
+    "test:coverage:html": "nyc report --reporter=html npm run test && && ./coverage/index.html",
+    "test:coverage:codecov":  "nyc report --reporter=text-lcov npm run test && codecov --token=c921461d-1641-4377-9faa-48183dd785ff"
   },
   "repository": {
     "type": "git",
@@ -33,6 +35,7 @@
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.0",
     "babel-eslint": "^7.1.1",
+    "babel-plugin-istanbul": "^4.0.0",
     "babel-plugin-module-resolver": "^2.5.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.9.0",
@@ -43,6 +46,7 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "nodemon": "^1.9.2",
+    "nyc": "^10.1.2",
     "sinon": "^1.17.7"
   }
 }

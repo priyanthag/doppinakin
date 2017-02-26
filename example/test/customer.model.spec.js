@@ -59,4 +59,18 @@ describe('Customer Medel', () => {
     expect(custSaved).to.be.instanceOf(Customer);
 
   })
+
+  it('Should delete the document created', async () => {
+    let cusObj = new Customer();
+    cusObj.name = 'Priyantha';
+    cusObj.address = 'somewhere in Austin';
+    let cust = await Customer.create(cusObj);
+    expect(cust).to.be.instanceOf(Customer);
+
+    let cusObj2 = await Customer.findById(cust.id);
+    cusObj2.name = 'Isurika';
+
+    let custDeleted = await Customer.delete(cusObj2);
+    expect(custDeleted).to.be.true;
+  })
 });

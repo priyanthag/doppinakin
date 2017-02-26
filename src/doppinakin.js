@@ -120,9 +120,8 @@ class Doppinakin {
 
       if (get(modelObj.result, 'ok') === 1) {
         return modelObj.ops[0];
-      } else {
-        throw new Error (`Error in creating record ${JSON.stringify(obj)}`);
       }
+      throw new Error (`Error in creating record ${JSON.stringify(obj)}`);
     } catch (e) {
 
       throw new Error(e)
@@ -145,13 +144,30 @@ class Doppinakin {
       let modelObj = await col.updateOne(pick(obj, '_id'), {$set: omit(obj, '_id')});
       if (get(modelObj.result, 'ok') === 1) {
         return obj;
-      } else {
-        throw new Error (`Error in updating record ${JSON.stringify(obj)}`);
       }
+      throw new Error (`Error in updating record ${JSON.stringify(obj)}`);
     } catch (e) {
       throw new Error(e)
     }
   }
+
+  static async delete(obj) {
+    try {
+      obj.updated_at = timestamp();
+      await this.validateSchema(obj);
+      let con = await getConnection(this);
+      let col = con.collection(this.collection);
+      let modelObj = await col.deleteOne(pick(obj, '_id'));
+
+      if (get(modelObj.result, 'ok') === 1) {
+        return true;
+      }
+      throw new Error (`Error in updating record ${JSON.stringify(obj)}`);
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
+
 }
 
 export default Doppinakin;

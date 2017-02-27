@@ -12,7 +12,7 @@
     "test:unit": "nyc npm run test:runner -- './src/**/test/*.spec.js' './example/**/test/*.spec.js' ",
     "test:unit:single": "nyc npm run test:runner -- -w",
     "test:coverage:html": "nyc report --reporter=html npm run test && open ./coverage/index.html",
-    "test:coverage:codecov":  "nyc report --reporter=lcovonly npm run test && codecov"
+    "test:coverage:codecov": "nyc report --reporter=lcovonly npm run test && codecov"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/priyanthag/doppinakin#readme",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "es6-promisify": "^5.0.0",
     "joi": "^10.2.2",
     "lodash": "^4.17.4",

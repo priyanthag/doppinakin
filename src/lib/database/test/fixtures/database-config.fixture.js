@@ -1,4 +1,5 @@
-export default {
+
+const dbConfig = {
   connections: {
     apiCon: {
       host: process.env.MONGODB_API_HOST || 'localhost',
@@ -19,4 +20,6 @@ export default {
       connectionPoolSize: 20,
     }
   },
-}
+};
+
+export default dbConfig;

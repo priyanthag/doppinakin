@@ -1,6 +1,9 @@
 /**
  * Created by priyantha on 2/22/17.
  */
+import Dotenv from 'dotenv';
+Dotenv.config();
+
 import { expect } from 'chai';
 import Doppinakin from '../doppinakin';
 

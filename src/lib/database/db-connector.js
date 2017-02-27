@@ -11,7 +11,7 @@ let dbConfig = {
 };
 
 let getConnection = async (connectionName) => {
-  let url = `mongodb://${get(dbConfig, `${connectionName}.host`)}:${get(dbConfig, `${connectionName}.port`)}/${get(dbConfig, `${connectionName}.database`)}`;
+  let url = `mongodb://${get(dbConfig, `${connectionName}.username`)}:${get(dbConfig, `${connectionName}.password`)}@${get(dbConfig, `${connectionName}.host`)}:${get(dbConfig, `${connectionName}.port`)}/${get(dbConfig, `${connectionName}.database`)}`;
   if (
     (get(dbConfig, `${connectionName}.singleton`)
       && isUndefined(get(get(dbCon, connectionName)))

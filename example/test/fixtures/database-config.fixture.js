@@ -1,4 +1,3 @@
-
 const dbConfig = {
   connections: {
     apiCon: {
@@ -18,7 +17,16 @@ const dbConfig = {
       database: 'doppinakin-log-test',
       singleton: true,
       connectionPoolSize: 20,
-    }
+    },
+  },
+  connections_default: {
+    host: process.env.MONGODB_API_HOST || 'localhost',
+    port: process.env.MONGODB_API_PORT || '27017',
+    username: process.env.MONGODB_API_USERNAME || '',
+    password: process.env.MONGODB_API_PASSWORD || '',
+    database: 'doppinakin-api-test',
+    singleton: false,
+    connectionPoolSize: 20,
   },
 };
 

@@ -1,6 +1,7 @@
-import { isUndefined, set, get } from 'lodash';
-import { MongoClient } from 'mongodb';
+import {isUndefined, set, get, isEmpty} from 'lodash';
+import {MongoClient} from 'mongodb';
 import promisify from 'es6-promisify';
+import timestamp from 'timestamp';
 
 // multiple different connections can be stored
 let dbCon = {};
@@ -11,40 +12,50 @@ let dbConfig = {
 };
 
 let getConnection = async (connectionName) => {
-  let url = `mongodb://${get(dbConfig, `${connectionName}.username`)}:${get(dbConfig, `${connectionName}.password`)}@${get(dbConfig, `${connectionName}.host`)}:${get(dbConfig, `${connectionName}.port`)}/${get(dbConfig, `${connectionName}.database`)}`;
+  const auth = isEmpty(get(dbConfig, `${connectionName}.username`))
+    ? ''
+    : `${get(dbConfig, `${connectionName}.username`)}:${get(dbConfig, `${connectionName}.password`)}@`; // eslint-disable-line max-len
+  let url = `mongodb://${auth}${get(dbConfig, `${connectionName}.host`)}:${get(dbConfig, `${connectionName}.port`)}/${get(dbConfig, `${connectionName}.database`)}`; // eslint-disable-line max-len
+
   if (
-    (get(dbConfig, `${connectionName}.singleton`)
-      && isUndefined(get(get(dbCon, connectionName)))
+    (
+      get(dbConfig, `${connectionName}.singleton`)
+      && isUndefined(get(dbCon, connectionName))
     )
     || !get(dbConfig, `${connectionName}.singleton`)
   ) {
-    set(dbCon, connectionName, promisify(MongoClient.connect)(url));
+    let con = await promisify(MongoClient.connect)(url);
+    con.timestamp = timestamp();
+    set(dbCon, connectionName, con);
   }
   return get(dbCon, connectionName);
-}
+};
 
 class DBConnector {
 
   constructor(config, connectionName) {
-    if (isUndefined(connectionName)) {
-      throw new Error('Connection name must be provided')
+    if (isEmpty(connectionName)) {
+      connectionName = 'default';
     }
     if (isUndefined(config)) {
-      throw new Error('Config must be provided')
+      throw new Error('Config must be provided');
     }
 
     // if the db connection in singleton mode
-    if (config.singleton && isUndefined(get(dbCon, connectionName))){
+    if (config.singleton && isUndefined(get(dbCon, connectionName))) {
       set(dbConfig, connectionName, config);
     } else if (!config.singleton) {
       set(dbConfig, connectionName, config);
     }
-  }
+  };
 
   async getConnection(connectionName) {
+    if (isEmpty(connectionName)) {
+      connectionName = 'default';
+    }
     return await getConnection(connectionName);
-  }
+  };
 
-}
+};
 
 export default DBConnector;

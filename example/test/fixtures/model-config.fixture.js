@@ -1,10 +1,10 @@
 export default {
   customers: {
     connection: 'apiCon',
-    model: 'Customer'
+    model: 'Customer',
   },
   logs: {
     connection: 'logCon',
-    model: 'Log'
+    model: 'Log',
   },
-}
+};

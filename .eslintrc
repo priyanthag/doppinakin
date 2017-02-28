@@ -1,16 +1,23 @@
 {
   "parser": "babel-eslint",
-  "extends": "eslint:recommended",
+  "extends": "google",
   "parserOptions": {
     "ecmaVersion": 7,
     "sourceType": "module"
+  },
+  "globals": {
+    "document": false,
+    "navigator": false,
+    "window": false
   },
   "env": {
     "node": true,
     "mocha": true
   },
   "rules": {
-    "no-console": 1,
-    "no-unused-vars": 1
+    "require-jsdoc": 0,
+    "max-len": [2, {
+      "code": 100
+    }]
   }
 }

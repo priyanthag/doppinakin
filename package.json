@@ -1,8 +1,8 @@
 {
   "name": "@priyanthag/doppinakin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "DAM (Document Access Module) for node.js + Mongo",
-  "main": "build/doppinakin.js",
+  "main": "src/doppinakin.js",
   "scripts": {
     "build": "babel --out-dir build/ src/ --ignore src/test/,src/**/*/test/",
     "dev": "NODE_ENV=development nodemon -w src --exec \"babel-node src\"",
